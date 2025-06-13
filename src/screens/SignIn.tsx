@@ -1,3 +1,7 @@
+import { Keyboard, Platform, ScrollView, TouchableWithoutFeedback } from "react-native";
+import { KeyboardAvoidingView } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
 import { VStack } from "@/components/ui/vstack";
 import { Image } from "@/components/ui/image";
 import { Center } from "@/components/ui/center";
@@ -12,35 +16,44 @@ import BackgroundImg from "@assets/background.png"
 
 export function SignIn() {
   return (
-    <VStack className="flex-1 bg-colorsTheme-gray-700 px-10">
-      <Image 
-        source={BackgroundImg}
-        alt="Pessoas treinando"
-        resizeMode="cover"
-        className="absolute w-screen h-auto"
-      />
+    <KeyboardAwareScrollView
+      contentContainerStyle={{ flexGrow: 1 }}
+      enableOnAndroid={true}
+      keyboardShouldPersistTaps="handled"
+    >
+      <VStack className="flex-1 bg-colorsTheme-gray-700 px-10">
+        <Image
+          source={BackgroundImg}
+          alt="Pessoas treinando"
+          resizeMode="cover"
+          className="absolute w-screen h-auto"
+        />
 
-      <Center className="my-24 items-center">
-        <LogoSvg />
+        <Center className="my-32 items-center">
+          <LogoSvg />
+          <Text className="color-colorsTheme-gray-100 text-smTheme font-body">
+            Treine sua mente e o seu corpo
+          </Text>
+        </Center>
 
-        <Text className="color-colorsTheme-gray-100 text-smTheme">
-          Treine sua mente e o seu corpo
-        </Text>
-      </Center>
+        <Center className="w-full">
+          <Heading className="color-colorsTheme-gray-100 text-xlTheme font-heading">
+            Acesse sua conta
+          </Heading>
 
-      <Center className="w-full">
-        <Heading className="color-colorsTheme-gray-100 text-xlTheme font-heading">
-          Acesse sua conta
-        </Heading>
+          <Input placeholder="Email" keyboardType="email-address" autoCapitalize="none" />
+          <Input placeholder="Senha" secureTextEntry />
 
-        <Input placeholder="Email" keyboardType="email-address" autoCapitalize="none" />
+          <Button title="Acessar" />
+        </Center>
 
-        <Input placeholder="Senha" secureTextEntry />
-
-        <Button title="Acessar" variant={false} />
-      </Center>
-
-      <Button title="Criar conta" variant={true} />
-    </VStack>
+        <Center className="mt-52 mb-16">
+          <Text className="color-colorsTheme-gray-100 text-smTheme mb-3 font-body">
+            Ainda não tem acesso?
+          </Text>
+          <Button title="Criar conta" variant={true} />
+        </Center>
+      </VStack>
+    </KeyboardAwareScrollView>
   );
 }

@@ -4,32 +4,31 @@ import { PressableProps } from "react-native";
 
 type Props = PressableProps & {
   title: string;
-  variant: boolean;
+  variant?: boolean;
 }
 
-export function Button({title, variant, ...rest }: Props) {
-  const [pressed, setPressed] = useState(false);
-
+export function Button({title, variant = false, ...rest }: Props) {
   return (
     <GluestackButton 
-      onPressIn={() => setPressed(true)}
-      onPressOut={() => setPressed(false)}
       className={`
         font-heading
-        ${variant ? "bg-colorsTheme-green-700" : "bg-transparent"}
         h-14
         w-full
         rounded-md
         hover:bg-colorsTheme-red-500
+        ${variant ? "bg-transparent" : "bg-colorsTheme-green-700"}
+        ${variant ? "border-2" : ""}
+        ${variant ? "border-colorsTheme-green-700" : ""}
+        ${variant ? "active:bg-colorsTheme-gray-500" : "active:bg-colorsTheme-green-500"}
       `}
       {...rest}
     >
       <ButtonText
-        className="
-          color-colorsTheme-white
+        className={`
           font-heading
           text-smTheme
-        "
+          ${variant ? "color-colorsTheme-green-500" : "color-colorsTheme-white"}
+          `}
       >
         {title}
       </ButtonText>
