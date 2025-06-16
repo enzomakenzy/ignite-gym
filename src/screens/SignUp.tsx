@@ -15,11 +15,11 @@ import { Button } from "@components/Button";
 import LogoSvg from "@assets/logo.svg";
 import BackgroundImg from "@assets/background.png"
 
-export function SignIn() {
+export function SignUp() {
   const navigation = useNavigation<AuthNavigatorRoutesProps>();
 
-  function handleNewAccount() {
-    navigation.navigate("signUp");
+  function handleBackToSignUp() {
+    navigation.goBack();
   }
 
   return (
@@ -43,23 +43,34 @@ export function SignIn() {
           </Text>
         </Center>
 
-        <Center className="w-full">
+        <Center className="w-full mb-52">
           <Heading className="color-colorsTheme-gray-100 text-xlTheme font-heading">
-            Acesse sua conta
+            Crie sua conta
           </Heading>
 
-          <Input placeholder="Email" keyboardType="email-address" autoCapitalize="none" />
-          <Input placeholder="Senha" secureTextEntry />
+          <Input 
+            placeholder="Nome" 
+          />
 
-          <Button title="Acessar" />
+          <Input 
+            placeholder="Email" 
+            keyboardType="email-address" 
+            autoCapitalize="none" 
+          />
+
+          <Input 
+            placeholder="Senha" 
+            secureTextEntry 
+          />
+
+          <Button title="Criar e acessar" />
         </Center>
 
-        <Center className="mt-52 mb-16">
-          <Text className="color-colorsTheme-gray-100 text-smTheme mb-3 font-body">
-            Ainda não tem acesso?
-          </Text>
-          <Button title="Criar conta" variant={true} onPress={handleNewAccount} />
-        </Center>
+        <Button 
+          title="Voltar para login" 
+          variant={true} 
+          onPress={handleBackToSignUp}
+        />
       </VStack>
     </KeyboardAwareScrollView>
   );

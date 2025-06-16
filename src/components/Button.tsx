@@ -7,7 +7,7 @@ type Props = PressableProps & {
   variant?: boolean;
 }
 
-export function Button({title, variant = false, ...rest }: Props) {
+export function Button({ title, variant = false, ...rest }: Props) {
   return (
     <GluestackButton 
       className={`
