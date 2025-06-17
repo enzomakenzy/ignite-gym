@@ -8,7 +8,7 @@
         "./*"
       ],       
       "@dtos/*": [
-        "src/dtos/*"
+        "./src/dtos/*"
       ],
       "@assets/*": [
         "./src/assets/*"

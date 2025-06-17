@@ -32,8 +32,13 @@ export function AppRoutes() {
       tabBarShowLabel: false,
       tabBarActiveTintColor: colorsTheme.green[500],
       tabBarInactiveTintColor: colorsTheme.gray[200],
+      tabBarStyle: {
+        backgroundColor: colorsTheme.gray[600],
+        borderTopWidth: 0,
+        height: 80,
+      },
       tabBarButton: (props: any) => (
-        <TouchableOpacity {...props} activeOpacity={1} />
+        <TouchableOpacity {...props} style={{ justifyContent: "center", alignItems: "center", width: "100%", height: "100%" }} activeOpacity={1} />
       )
     }}>
       <Screen 
@@ -69,6 +74,9 @@ export function AppRoutes() {
       <Screen 
         name="exercise"
         component={Exercise}
+        options={{
+          tabBarItemStyle: ({ display: "none" })
+        }}
       />
     </Navigator>
   );
