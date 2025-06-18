@@ -11,6 +11,7 @@ import ProfileSvg from "@assets/profile.svg";
 import { sizesTheme } from "../theme/sizes";
 import { colorsTheme } from "../theme/colors";
 import { TouchableOpacity } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type AppRoutes = {
   home: undefined;
@@ -24,7 +25,8 @@ export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>
 const { Navigator, Screen } = createBottomTabNavigator<AppRoutes>();
 
 export function AppRoutes() {
-  const iconSize = sizesTheme[6]
+  const insets = useSafeAreaInsets();
+  const iconSize = sizesTheme[6];
 
   return (
     <Navigator screenOptions={{ 
@@ -35,7 +37,7 @@ export function AppRoutes() {
       tabBarStyle: {
         backgroundColor: colorsTheme.gray[600],
         borderTopWidth: 0,
-        height: 80,
+        height: 50 + insets.bottom,
       },
       tabBarButton: (props: any) => (
         <TouchableOpacity {...props} style={{ justifyContent: "center", alignItems: "center", width: "100%", height: "100%" }} activeOpacity={1} />
