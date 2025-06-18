@@ -7,8 +7,6 @@ import { MaterialIcons } from "@expo/vector-icons"
 
 import UserPhoto from "@assets/userPhotoDefault.png"
 import { Image } from "@/components/ui/image";
-import { Icon,  } from "@/components/ui/icon";
-import { createIcon } from "@gluestack-ui/icon";
 import { colorsTheme } from "../theme/colors";
 import { TouchableOpacity } from "react-native";
 
@@ -21,6 +19,7 @@ export function HomeHeader() {
         size="2xl"
         className="mr-4"
       />
+
       <VStack className="flex-1">
         <Text className="color-colorsTheme-gray-100 text-mdTheme">
           Olá,
