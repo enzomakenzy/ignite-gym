@@ -11,7 +11,9 @@ type Props = PressableProps & {
 export function Group({ name, isActive, ...rest }: Props) {
   return (
     <Pressable 
-      className={`mr-3 
+      className={`
+        group
+        mr-3 
         w-28
         h-12 
         bg-colorsTheme-gray-600 
@@ -19,12 +21,12 @@ export function Group({ name, isActive, ...rest }: Props) {
         justify-center 
         overflow-hidden 
         active:border-colorsTheme-green-500 
-        active:border-2 color-colorsTheme-gray-200 
-        
+        active:border-2 color-colorsTheme-gray-200  
         ${isActive ? "border-colorsTheme-green-500 border-2"  : ""}
       `}
+      {...rest}
     >
-      <Text className={`active:color-colorsTheme-green-500  uppercase text-xsTheme font-heading  ${isActive ? "color-colorsTheme-green-500" : "color-colorsTheme-gray-200"}`}>
+      <Text className={`group-active:color-colorsTheme-green-500 uppercase text-xsTheme font-heading  ${isActive ? "color-colorsTheme-green-500" : "color-colorsTheme-gray-200"}`}>
         {name}
       </Text>
     </Pressable>
