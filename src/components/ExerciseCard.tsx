@@ -13,8 +13,8 @@ type Props = TouchableOpacityProps & {
 
 export function ExerciseCard({...rest}: Props) {
   return (
-    <TouchableOpacity {...rest}>
-      <HStack className="bg-colorsTheme-gray-500 items-center p-2 pr-4 rounded-md">
+    <TouchableOpacity activeOpacity={0.6} {...rest}>
+      <HStack className="bg-colorsTheme-gray-500 items-center p-2 pr-4 rounded-md mb-4">
         <Image 
           source={{ uri: "https://conteudo.imguol.com.br/c/entretenimento/0c/2019/12/03/remada-unilateral-com-halteres-1575402100538_v2_600x600.jpg" }}
           alt="Imagem do exercício"

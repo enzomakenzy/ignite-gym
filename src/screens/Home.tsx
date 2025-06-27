@@ -13,7 +13,8 @@ import { Text } from "@/components/ui/text";
 
 export function Home() {
   const [groups, setGroups] = useState<string[]>(["Costas", "Bíceps", "Tríceps", "Ombro"]);
-  const [groupSelected, setGroupSelected] = useState("costa");
+  const [exercises, setExercises] = useState(["Puxada frontal", "Remada curvada", "Remada unilateral", "Levantamento terra", "1", "2", "3", "4"]);
+  const [groupSelected, setGroupSelected] = useState("costas");
 
   return (
     <VStack className="flex-1">
@@ -25,7 +26,7 @@ export function Home() {
         renderItem={({ item }) => (
           <Group 
           name={item} 
-          isActive={groupSelected === item} 
+          isActive={groupSelected.toLocaleUpperCase() === item.toLocaleUpperCase()} 
           onPress={() => setGroupSelected(item)} 
           />
         )}
@@ -42,12 +43,19 @@ export function Home() {
           </Heading>
 
           <Text className="color-colorsTheme-gray-200 text-smTheme">
-            4
+            {exercises.length}
           </Text>
         </HStack>
 
-        <ExerciseCard />
+        <FlatList 
+          data={exercises}
+          keyExtractor={item => item}
+          renderItem={({ item }) => ( <ExerciseCard /> )}
+          contentContainerStyle={{ paddingBottom: 20 }}
+          showsVerticalScrollIndicator={false}
+        />
       </VStack>
+
     </VStack>
   );
 }

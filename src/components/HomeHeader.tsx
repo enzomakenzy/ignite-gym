@@ -14,10 +14,9 @@ export function HomeHeader() {
   return (
     <HStack className="bg-colorsTheme-gray-600 pt-16 pb-5 px-8 items-center flex-row">
       <Image
-        source={UserPhoto}
+        source={{ uri: "https://github.com/enzomakenzy.png" }}
         alt="Imagem de Usuário"
-        size="2xl"
-        className="mr-4"
+        className="mr-4 size-16 rounded-full"
       />
 
       <VStack className="flex-1">
