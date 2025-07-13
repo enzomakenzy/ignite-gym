@@ -1,7 +1,7 @@
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { useNavigation } from "@react-navigation/native";
-import { AuthNavigatorRoutesProps } from "../routes/auth.routes";
+import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 
 import { VStack } from "@/components/ui/vstack";
 import { Image } from "@/components/ui/image";

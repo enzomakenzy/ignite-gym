@@ -11,6 +11,7 @@ import ProfileSvg from "@assets/profile.svg";
 import { sizesTheme } from "../theme/sizes";
 import { colorsTheme } from "../theme/colors";
 import { TouchableOpacity } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type AppRoutes = {
   home: undefined;
@@ -24,7 +25,8 @@ export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>
 const { Navigator, Screen } = createBottomTabNavigator<AppRoutes>();
 
 export function AppRoutes() {
-  const iconSize = sizesTheme[6]
+  const insets = useSafeAreaInsets();
+  const iconSize = sizesTheme[6];
 
   return (
     <Navigator screenOptions={{ 
@@ -32,8 +34,13 @@ export function AppRoutes() {
       tabBarShowLabel: false,
       tabBarActiveTintColor: colorsTheme.green[500],
       tabBarInactiveTintColor: colorsTheme.gray[200],
+      tabBarStyle: {
+        backgroundColor: colorsTheme.gray[600],
+        borderTopWidth: 0,
+        height: 50 + insets.bottom,
+      },
       tabBarButton: (props: any) => (
-        <TouchableOpacity {...props} activeOpacity={1} />
+        <TouchableOpacity {...props} style={{ justifyContent: "center", alignItems: "center", width: "100%", height: "100%" }} activeOpacity={1} />
       )
     }}>
       <Screen 
@@ -42,16 +49,6 @@ export function AppRoutes() {
         options={{
           tabBarIcon: ({ color }) => (
             <HomeSvg fill={color} width={iconSize} height={iconSize} />
-          )
-        }}
-      />
-
-      <Screen 
-        name="profile"
-        component={Profile}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <ProfileSvg fill={color} width={iconSize} height={iconSize} />
           )
         }}
       />
@@ -67,8 +64,21 @@ export function AppRoutes() {
       />
 
       <Screen 
+        name="profile"
+        component={Profile}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <ProfileSvg fill={color} width={iconSize} height={iconSize} />
+          )
+        }}
+      />
+
+      <Screen 
         name="exercise"
         component={Exercise}
+        options={{
+          tabBarItemStyle: ({ display: "none" })
+        }}
       />
     </Navigator>
   );

@@ -12,7 +12,7 @@ export function Button({ title, variant = false, ...rest }: Props) {
     <GluestackButton 
       className={`
         font-heading
-        h-14
+        h-16
         w-full
         rounded-md
         hover:bg-colorsTheme-red-500
