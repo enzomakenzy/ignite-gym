@@ -14,7 +14,7 @@ export function Routes() {
     <SafeAreaProvider>
       <Box className="flex-1 bg-colorsTheme-gray-700">
         <NavigationContainer theme={theme}>
-          <AppRoutes />
+          <AuthRoutes />
         </NavigationContainer>
       </Box>
     </SafeAreaProvider>
