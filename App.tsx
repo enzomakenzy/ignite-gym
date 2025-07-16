@@ -6,11 +6,14 @@ import { Loading } from "./src/components/Loading";
 import { StatusBar } from "react-native";
 import { Routes } from "./src/routes";
 
+import { SafeAreaView } from "react-native-safe-area-context";
+
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
 
   return (
     <GluestackUIProvider mode="light">
+      <SafeAreaView></SafeAreaView>
       <StatusBar 
         barStyle="light-content"
         backgroundColor="transparent"

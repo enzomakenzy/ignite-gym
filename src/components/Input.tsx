@@ -1,11 +1,50 @@
+import { FormControl, FormControlErrorText } from "@/components/ui/form-control";
 import { Input as GluestackInput, InputField } from "@/components/ui/input";
-import { TextInputProps } from "react-native";
+import { TextInput, TextInputProps, View } from "react-native";
 
-export function Input({ ...rest }: TextInputProps) {
+type Props = TextInputProps & {
+  errorMessage?: string | null;
+  isInvalid?: boolean;
+}
+
+export function Input({ errorMessage, isInvalid, ...rest }: Props) {
+  const invalid = !!errorMessage || isInvalid;
+
   return (
-    <GluestackInput className="bg-colorsTheme-gray-700 h-16 w-full text-mdTheme mb-4 rounded-md border-0">
-      <InputField { ...rest } 
-      className="text-colorsTheme-white border border-colorsTheme-gray-700 w-full h-full px-4 placeholder:text-colorsTheme-gray-300 rounded-md focus:border-colorsTheme-green-500" />
-    </GluestackInput>
+    <FormControl isInvalid={invalid} className="mb-2">
+      <GluestackInput 
+      className="
+        bg-colorsTheme-gray-700 
+        h-16 
+        w-full 
+        text-mdTheme 
+        mb-2
+        rounded-md 
+        border 
+        border-colorsTheme-gray-700
+      ">
+        <InputField { ...rest } 
+        className={`
+          text-colorsTheme-white 
+          border 
+          border-colorsTheme-gray-700 
+          w-full 
+          h-full 
+          px-4 
+          placeholder:text-colorsTheme-gray-300 
+          rounded-md 
+          focus:border-colorsTheme-green-500
+          ${invalid && "border-colorsTheme-red-500"}
+          ${invalid && "focus:border-colorsTheme-red-500"}
+        `}/>
+      </GluestackInput>
+      {
+        invalid && (
+          <FormControlErrorText>
+            {errorMessage}
+          </FormControlErrorText>
+        )
+      }
+    </FormControl>
   );
 }

@@ -40,7 +40,6 @@ export function Profile() {
 
       if (photoSelected.assets[0].uri) {
         if (photoSelected.assets[0].fileSize && (photoSelected.assets[0].fileSize / 1024 / 1024) > 1) {
-          console.log("aimds do ceu")
           return toast.show({
             placement: "top",
             render: () => {
