@@ -1,12 +1,15 @@
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import { useNavigation } from "@react-navigation/native";
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 
 import z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useForm, Controller } from "react-hook-form";
 
+import { Box } from "@/components/ui/box";
 import { VStack } from "@/components/ui/vstack";
 import { Image } from "@/components/ui/image";
 import { Center } from "@/components/ui/center";
@@ -18,9 +21,10 @@ import { Button } from "@components/Button";
 
 import LogoSvg from "@assets/logo.svg";
 import BackgroundImg from "@assets/background.png";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Box } from "@/components/ui/box";
-import { SafeAreaView } from "react-native-safe-area-context";
+
+import { api } from "../services/api";
+import axios from "axios";
+import { Alert } from "react-native";
 
 type FormDataProps = {
   name: string;
@@ -53,8 +57,15 @@ export function SignUp() {
     navigation.goBack();
   }
 
-  function handleSignUp({ name, email, password, passwordConfirm }: FormDataProps) {
-    console.log({name, email, password, passwordConfirm});
+  async function handleSignUp({ name, email, password, passwordConfirm }: FormDataProps) {
+    try {
+      const response = await api.post("/users", { name, email, password });
+      console.log(response.data); 
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        Alert.alert(error.response?.data.message);
+      }
+    }
   }
 
   return (
